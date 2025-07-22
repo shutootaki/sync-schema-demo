@@ -2,7 +2,7 @@ import { UserCreateRequest, UserResponse } from "@/lib/api/schema/api_schemas";
 import { z } from "zod";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 async function apiCall<T>(
   path: string,
@@ -23,7 +23,9 @@ async function apiCall<T>(
 }
 
 export const userApi = {
-  async create(userData: z.infer<typeof UserCreateRequest>): Promise<z.infer<typeof UserResponse>> {
+  async create(
+    userData: z.infer<typeof UserCreateRequest>
+  ): Promise<z.infer<typeof UserResponse>> {
     const validatedData = UserCreateRequest.parse(userData);
     return apiCall(
       "/api/v1/users",

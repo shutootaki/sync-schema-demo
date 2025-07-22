@@ -3,3 +3,33 @@ docs
 
 # kiro
 .kiro
+
+# Backend Python
+__pycache__/
+
+*/.mypy_cache/
+*/.coverage
+*/htmlcov/
+*/.env
+
+# Node.js
+*/node_modules/
+*/dist/
+*/.env
+*/.env.local
+*/.env.development.local
+*/.env.test.local
+*/.env.production.local
+
+# Generated files
+*/src/lib/api/generated/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
