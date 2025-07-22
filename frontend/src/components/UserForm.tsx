@@ -1,21 +1,16 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  UserCreateRequest,
-  type UserCreateRequest as UserCreateRequestType,
-} from "@/lib/api/schema/api_schemas";
+import { UserCreateRequest } from "@/lib/api/schema/api_schemas";
 
-interface UserFormProps {
-  onSubmit: (data: UserCreateRequestType) => Promise<void>;
+export const UserForm: React.FC<{
+  onSubmit: (data: UserCreateRequest) => Promise<void>;
   isLoading: boolean;
-}
-
-export const UserForm: React.FC<UserFormProps> = ({ onSubmit, isLoading }) => {
+}> = ({ onSubmit, isLoading }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserCreateRequestType>({
+  } = useForm<UserCreateRequest>({
     resolver: zodResolver(UserCreateRequest),
     defaultValues: { role: "user" },
   });
