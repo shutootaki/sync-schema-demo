@@ -11,7 +11,7 @@ def generate_user_id() -> int:
     return random.randint(1, 10000)
 
 
-users_db = {}
+users_db: dict = {}
 
 
 @router.post("/users", response_model=UserResponse)
@@ -26,7 +26,7 @@ async def create_user(user_data: UserCreateRequest) -> UserResponse:
     }
 
     users_db[new_user["id"]] = new_user
-    return UserResponse(**new_user)
+    return UserResponse.model_validate(new_user)
 
 
 @router.get("/users/{user_id}", response_model=UserResponse)
@@ -35,4 +35,4 @@ async def get_user(user_id: int) -> UserResponse:
     user = users_db.get(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="ユーザーが見つかりません")
-    return UserResponse(**user)
+    return UserResponse.model_validate(user)

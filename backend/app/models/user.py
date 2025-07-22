@@ -10,6 +10,7 @@ class UserRole(str, Enum):
 
 class UserCreateRequest(BaseModel):
     """ユーザー作成リクエストのスキーマ"""
+
     name: str = Field(..., min_length=1, max_length=100)
     email: EmailStr
     age: int = Field(..., ge=18, le=120)
@@ -18,6 +19,7 @@ class UserCreateRequest(BaseModel):
 
 class UserResponse(BaseModel):
     """ユーザーレスポンスのスキーマ"""
+
     id: int
     name: str
     email: str
